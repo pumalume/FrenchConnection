@@ -44,6 +44,7 @@ class TestFragment : Fragment() {
         buttonGrammer = main.findViewById(R.id.button2)
         buttonContent.setOnClickListener(myButtonClicker)
         buttonGrammer.setOnClickListener(otherButtonClicker)
+        mySoundPlayer = SoundPlayer(requireContext())
 
         return main
     }
@@ -55,18 +56,18 @@ class TestFragment : Fragment() {
     }
 
     val otherButtonClicker = View.OnClickListener {
-        mySoundPlayer = SoundPlayer(requireContext(),
-        gameBrain.allPossibleSounds,
-        gameBrain.soundSequenceToBePlayed as Array<Int>)
+        val a = gameBrain.allPossibleGrammar[0].myUri
+        val b = gameBrain.allPossibleSounds[2].myUri
+        val s = mutableListOf(a, b)
+        mySoundPlayer.setupSoundSequence(s)
+        mySoundPlayer.startSound()
     }
 
-    fun createSoundList(u:Uri):MutableList<Uri>{
-        val sentence :SentenceObject()
-        //val subjectValue = gameBrain.getSubjectValue()
-        val soundSequence  = ArrayList<Uri>()
-
-        return soundSequence
-
+    fun createSoundList(i:Int, ii:Int):MutableList<Uri>{
+       // val uri1 = gameBrain.allPossibleGrammar[i].myUri
+        val uri2 = gameBrain.allPossibleSounds[ii].myUri
+        val sounds = mutableListOf<Uri>(uri2, uri2)
+        return sounds
     }
 
 

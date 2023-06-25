@@ -8,37 +8,30 @@ import android.widget.Toast
 import java.io.IOException
 
 
-class SoundPlayer(context: Context, pl:MutableList<ConceptualObject>, a:Array<Int>) {
-    val context = context
-    var mMediaPlayer : MediaPlayer? = null
-    val mArray = a
-    var playIndex = 0
-    val playList = pl
+class SoundPlayer(c: Context) {
+    private val context = c
+    private lateinit var mMediaPlayer : MediaPlayer
+    private var playIndex = 0
+    private lateinit var sounds : MutableList<Uri>
 
+    fun setupSoundSequence(s:MutableList<Uri>){
+
+        sounds = s
+        playIndex=0
+    }
     fun startSound() {
-        val index = mArray[playIndex++]
-        if(mMediaPlayer!=null)mMediaPlayer!!.release()
         mMediaPlayer = MediaPlayer()
-        mMediaPlayer!!.setDataSource(context, playList[index].myUri)
-        mMediaPlayer!!.prepare()
-        mMediaPlayer!!.setOnCompletionListener(completionListener)
+        mMediaPlayer.setDataSource(context, sounds[playIndex++])
+        mMediaPlayer.prepare()
+        mMediaPlayer.setOnCompletionListener(completionListener)
         mMediaPlayer!!.start()
     }
 
     val completionListener = OnCompletionListener { mediaPlayer ->
-        if (playIndex < playList.size) {
+        if (playIndex < sounds.size) {
             try {
                 startSound()
             } catch (e: IOException) { }
         } else { }
-    }
-
-    fun getSubjectSound(subject:Int):MediaPlayer{
-
-//        if(mMediaPlayer!=null)mMediaPlayer!!.release()
-//        when(subject){
-//
-//        }
-    return MediaPlayer()
     }
 }

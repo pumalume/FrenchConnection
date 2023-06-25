@@ -18,7 +18,7 @@ class SoundBrain: ViewModel(){
         if(grammarCount==3) grammarCount=0
     }
     fun createAllPossibleSounds(){
-        allPossibleSounds = SoundFileLoader("chapter01").fillAudioMap()
+        allPossibleSounds = SoundFileLoader("chapter98").fillAudioMap()
     }
     fun createAllPossibleGrammar(){
         allPossibleGrammar = SoundFileLoader("grammar").fillAudioMap()

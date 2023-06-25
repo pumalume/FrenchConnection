@@ -53,11 +53,11 @@ class AudioFramework : Fragment() {
     }
 
     fun createAudioFile(){
-        val a :Array<Int> = arrayOf(1,2)
-        soundBrain.createAllPossibleSounds()
-        //soundBrain.createNewSoundSequenceToBePlayed(a)
-        val soundPlayer = SoundPlayer(requireContext(), soundBrain.allPossibleSounds, a)
-        soundPlayer.startSound()
+//        val a :Array<Int> = arrayOf(1,2)
+//        soundBrain.createAllPossibleSounds()
+//        //soundBrain.createNewSoundSequenceToBePlayed(a)
+//        val soundPlayer = SoundPlayer(requireContext(), soundBrain.allPossibleSounds, a)
+//        soundPlayer.startSound()
 
 
     }
