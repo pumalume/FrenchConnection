@@ -8,10 +8,22 @@ class SoundBrain: ViewModel(){
 
     lateinit var soundSequenceToBePlayed: MutableList<Int>
     lateinit var allPossibleSounds: MutableList<ConceptualObject>
+    lateinit var allPossibleGrammar: MutableList<ConceptualObject>
+    var pictureCount = 0
+    var grammarCount = 0
+    val scenario = arrayOf(0, 0, 0)
 
-    fun createAllPossibleSounds(){
-        allPossibleSounds = SoundFileLoader("chapter98").fillAudioMap()
+    fun increaseGrammar(){
+        grammarCount++
+        if(grammarCount==3) grammarCount=0
     }
+    fun createAllPossibleSounds(){
+        allPossibleSounds = SoundFileLoader("chapter01").fillAudioMap()
+    }
+    fun createAllPossibleGrammar(){
+        allPossibleGrammar = SoundFileLoader("grammar").fillAudioMap()
+    }
+
     fun createNewSoundSequenceToBePlayed(array:Array<Int>){
         val tempList : MutableList<Int> = arrayListOf(0)
         val size = array.size
@@ -20,6 +32,7 @@ class SoundBrain: ViewModel(){
         }
         soundSequenceToBePlayed = tempList
     }
+
 
     fun createSound():MutableList<Uri>{
         val mySound : MutableList<Uri> = ArrayList(0)
@@ -30,4 +43,7 @@ class SoundBrain: ViewModel(){
         }
         return mySound
     }
+
+
+
 }

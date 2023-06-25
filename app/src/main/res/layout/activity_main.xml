@@ -8,8 +8,8 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.ingilizceevi.frenchconnection.AudioFramework"
+        android:name="com.ingilizceevi.frenchconnection.TestFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_audio_framework" />
+        tools:layout="@layout/fragment_test" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,7 @@ class AudioFramework : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var button : Button
     private val soundBrain: SoundBrain by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,34 +41,30 @@ class AudioFramework : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val main = inflater.inflate(R.layout.fragment_audio_framework, container, false)
-        val button = main.findViewById<Button>(R.id.button)
+        button = main.findViewById<Button>(R.id.button)
         button.setOnClickListener(myOnClickListener)
 
         return main
     }
 
-    val myOnClickListener = View.OnClickListener { createAudioFile() }
+    val myOnClickListener = View.OnClickListener {
+        createAudioFile()
+        button.setOnClickListener(null)
+    }
 
     fun createAudioFile(){
-        val a :Array<Int> = arrayOf(0,1,2)
+        val a :Array<Int> = arrayOf(1,2)
         soundBrain.createAllPossibleSounds()
-        soundBrain.createNewSoundSequenceToBePlayed(a)
-        val soundPlayer = SoundPlayer(requireContext(), soundBrain.createSound())
+        //soundBrain.createNewSoundSequenceToBePlayed(a)
+        val soundPlayer = SoundPlayer(requireContext(), soundBrain.allPossibleSounds, a)
         soundPlayer.startSound()
 
 
     }
 
+
+
         companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AudioFramework.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             AudioFramework().apply {

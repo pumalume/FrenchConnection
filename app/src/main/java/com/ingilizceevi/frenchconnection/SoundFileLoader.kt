@@ -18,6 +18,21 @@ class SoundFileLoader(location:String) {
                 myConceptualObjectList.add(ConceptualObject(u, s))
             }
         }
-        return myConceptualObjectList
+        return fillMyArray(myConceptualObjectList)
+    }
+
+    fun fillMyArray(co : MutableList<ConceptualObject>):MutableList<ConceptualObject> {
+        var i = 0
+        val myListOfDrawableObjects : MutableList<ConceptualObject> = ArrayList(0)
+        val myPath = Environment.getExternalStorageDirectory().path + "/Pictures/" + location + "/"
+        //val myPath = Environment.getExternalStorageDirectory().path + "/Pictures/MyImages/" + myChapter + "/"
+        File(myPath).walkBottomUp().forEach {
+            if (it.isFile) {
+                val d = Drawable.createFromPath(it.absolutePath)!!
+                val s = it.toString().substringAfterLast("/").dropLast(4)
+                co[i++].myDrawable = d
+            }
+        }
+        return co
     }
 }
